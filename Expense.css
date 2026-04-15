@@ -1,0 +1,186 @@
+/* === GLOBAL FLUID WIDTH FIX === */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.t-Body,
+.t-Body-main,
+.t-Body-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* === STICKY HEADER (fix duplicate nav on scroll) === */
+.t-Header {
+  position: sticky !important;
+  top: 0;
+  z-index: 1000 !important;
+  width: 100% !important;
+}
+
+/* === DASHBOARD — KPI Cards responsive grid === */
+/* Stack 3 cards to 1-col on mobile, 2-col on tablet */
+@media (max-width: 640px) {
+  .t-Body { grid-template-columns: 0px 100% 0px !important; }
+
+  /* KPI cards full width on mobile */
+  .apex-col-sm-12,
+  [class*="col-sm-4"],
+  .t-Region--cards .t-Cards .t-Cards-item {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+
+  /* Reduce heading size */
+  h1.t-Body-title,
+  .t-BreadcrumbRegion-title h1 {
+    font-size: 1.4rem !important;
+  }
+
+  /* AI button full width on mobile */
+  .ai-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .t-Body { grid-template-columns: 0px 100% 0px !important; }
+}
+
+/* === CHART REGIONS — remove fixed height causing whitespace === */
+.t-Region .t-Region-body {
+  min-height: unset !important;
+  height: auto !important;
+}
+
+.oj-chart,
+[class*="oj-chart"] {
+  height: auto !important;
+  min-height: 300px;
+  max-height: 420px;
+}
+
+/* === REPORTS & TABLES — horizontal scroll on small screens === */
+.t-Report,
+.t-Report table,
+.t-Report--stretch table {
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .t-Report .t-Report-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .t-Report table {
+    min-width: 480px;
+  }
+}
+
+/* === FORMS — full width inputs on mobile === */
+@media (max-width: 768px) {
+  .t-Form-inputContainer,
+  .apex-item-text,
+  .apex-item-select,
+  .apex-item-textarea,
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Stack form label + input vertically */
+  .t-Form-fieldContainer {
+    flex-direction: column !important;
+  }
+  .t-Form-labelContainer {
+    width: 100% !important;
+    text-align: left !important;
+    padding-bottom: 4px;
+  }
+}
+
+/* === CARD REGION POLISH (all pages) === */
+.t-Cards .t-Cards-item .t-Card {
+  border-radius: 12px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.t-Cards .t-Cards-item .t-Card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25) !important;
+}
+
+/* === INTERACTIVE GRID — mobile scroll === */
+@media (max-width: 768px) {
+  .a-GV-table {
+    min-width: 600px;
+  }
+  .a-GV-w-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* === DIALOG / MODAL — full width on mobile === */
+@media (max-width: 640px) {
+  .ui-dialog {
+    width: 95vw !important;
+    left: 2.5vw !important;
+  }
+}
+
+/* === PADDING CONSISTENCY (all pages) === */
+.t-Body-content {
+  padding: 0 16px 24px !important;
+  box-sizing: border-box;
+}
+@media (max-width: 480px) {
+  .t-Body-content {
+    padding: 0 8px 16px !important;
+  }
+}
+
+/* === NAVIGATION SIDEBAR — hide correctly on mobile === */
+@media (max-width: 768px) {
+  .t-Body-nav {
+    display: none !important;
+  }
+  .t-Body.js-navCollapsed .t-Body-nav {
+    display: block !important;
+  }
+}
+Step 3: Per-Page CSS (add to each page's "CSS > Inline")
+Page 4 – Dashboard:
+css/* Fix chart container whitespace */
+#chart-region .t-Region-body,
+.t-Region:has(canvas) .t-Region-body {
+  height: auto !important;
+  min-height: 320px;
+  padding-bottom: 16px;
+}
+Expense Entry / Form pages:
+css/* Ensure date pickers and number inputs behave on mobile */
+@media (max-width: 768px) {
+  .apex-item-datepicker,
+  .a-DateTimePicker {
+    width: 100% !important;
+  }
+}
+Report pages:
+css/* Better report reading on mobile */
+@media (max-width: 768px) {
+  .t-Report td, .t-Report th {
+    white-space: normal !important;
+    word-break: break-word;
+    font-size: 0.85rem;
+  }
+}
